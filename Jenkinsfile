@@ -1,6 +1,6 @@
 node{
   stage('SCM Checkout') {
-   git 'https://github.com/king-tapsey/taskservice/tree/main'
+   git 'https://github.com/king-tapsey/taskservice'
   }
   stage('Compile-Package'){
      def mvnHome = tool name: 'maven3', type: 'maven'
