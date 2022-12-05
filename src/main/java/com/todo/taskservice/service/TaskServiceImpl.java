@@ -56,10 +56,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void  deleteTask(Long taskId) {
+    public String  deleteTask(Long taskId) {
         Optional<Task> task = taskRepository.findById(taskId);
-        if(Objects.nonNull(task)){
+        if(task.isPresent()){
             taskRepository.deleteById(taskId);
+            return "Task deleted successfully.";
         }
         else
             throw new TaskNotFoundException("404 : Task not found!");

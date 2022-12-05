@@ -44,8 +44,8 @@ public class TaskRestController {
     }
 
     @DeleteMapping("/delete/{taskId}")
-    public void deleteTask(@PathVariable Long taskId){
-        taskService.deleteTask(taskId);
+    public String deleteTask(@PathVariable Long taskId){
+        return taskService.deleteTask(taskId);
     }
 
     @PostMapping("/create")
