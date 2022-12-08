@@ -10,6 +10,7 @@ public interface TaskService {
     List<Task> getTasksByPinnedAndAssigneeId(Boolean pinned, Long assigneeId);
     Task createTask(TaskCreateRequest taskCreateRequest);
     Task updateTaskPinnedStatus(Long taskId, Boolean pinned);
+    Task updateTask(Long taskId, TaskRequest taskRequest);
 
     void deleteTask(Long taskId);
 }

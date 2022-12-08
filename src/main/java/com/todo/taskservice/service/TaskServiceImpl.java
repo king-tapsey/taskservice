@@ -2,7 +2,7 @@ package com.todo.taskservice.service;
 
 import com.todo.taskservice.domain.Status;
 import com.todo.taskservice.domain.Task;
-import com.todo.taskservice.domain.TaskNotFoundException;
+import com.todo.taskservice.domain.exception.TaskNotFoundException;
 import com.todo.taskservice.persistence.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -46,22 +46,25 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task updateTaskPinnedStatus(Long taskId, Boolean pinned) {
-        Optional<Task> optionalTask = taskRepository.findById(taskId);
-        if(Objects.isNull(optionalTask)){
-            return null;
-        }
-        Task task = optionalTask.get();
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new TaskNotFoundException("Task not found"));
         task.setPinned(pinned);
         return taskRepository.save(task);
     }
 
     @Override
+    public Task updateTask(Long taskId, TaskRequest taskRequest) {
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new TaskNotFoundException("Task not found"));
+        task.setDescription(taskRequest.getDescription());
+        task.setPinned(taskRequest.getPinned());
+        task.setStatus(taskRequest.getStatus());
+        task.setAssigneeId(taskRequest.getAssigneeId());
+
+        return taskRepository.save(task);
+    }
+
+    @Override
     public void  deleteTask(Long taskId) {
-        Optional<Task> task = taskRepository.findById(taskId);
-        if(Objects.nonNull(task)){
-            taskRepository.deleteById(taskId);
-        }
-        else
-            throw new TaskNotFoundException("404 : Task not found!");
+        taskRepository.findById(taskId).orElseThrow(() -> new TaskNotFoundException("Task not found"));
+        taskRepository.deleteById(taskId);
     }
 }
