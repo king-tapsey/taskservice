@@ -12,5 +12,5 @@ public interface TaskService {
     Task updateTaskPinnedStatus(Long taskId, Boolean pinned);
     Task updateTask(Long taskId, TaskRequest taskRequest);
 
-    void deleteTask(Long taskId);
+    String deleteTask(Long taskId);
 }
