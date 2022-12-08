@@ -7,7 +7,7 @@ node {
      }
   
     stage('Compile-Package') {
-        sh "export set $MAVEN_OPTS=\"${env.MAVEN_OPTS}\""
+        sh "export set MAVEN_OPTS=\"${env.MAVEN_OPTS}\""
         def mvnHome = tool name: 'maven3', type: 'maven'
         sh "${mvnHome}/bin/mvn package"
     }
