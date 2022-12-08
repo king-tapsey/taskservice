@@ -7,7 +7,7 @@ node {
      }
   
     stage('Compile-Package') {
-        sh "export set MAVEN_OPTS=-DCONFIG_SERVER_URI=http://192.168.10.45:8081"
+        sh "export set MAVEN_OPTS=\"-DCONFIG_SERVER_URI='http://192.168.10.45:8081'\""
         def mvnHome = tool name: 'maven3', type: 'maven'
         sh "${mvnHome}/bin/mvn package"
     }
