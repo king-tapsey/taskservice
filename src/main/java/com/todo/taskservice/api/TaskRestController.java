@@ -65,8 +65,4 @@ public class TaskRestController {
         return new PageImpl<>(pinnedTasks, pageable, pinnedTasks.size());
     }
 
-
-
-
-
 }
