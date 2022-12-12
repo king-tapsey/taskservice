@@ -1,4 +1,4 @@
-package com.todo.taskservice.domain.exception;
+package com.todo.taskservice.service.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

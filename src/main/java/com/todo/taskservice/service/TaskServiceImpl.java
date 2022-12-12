@@ -2,17 +2,15 @@ package com.todo.taskservice.service;
 
 import com.todo.taskservice.domain.Status;
 import com.todo.taskservice.domain.Task;
-import com.todo.taskservice.domain.exception.TaskNotFoundException;
+import com.todo.taskservice.service.exception.TaskNotFoundException;
 import com.todo.taskservice.persistence.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class TaskServiceImpl implements TaskService {
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
     public TaskServiceImpl(TaskRepository taskRepository){
         this.taskRepository = taskRepository;

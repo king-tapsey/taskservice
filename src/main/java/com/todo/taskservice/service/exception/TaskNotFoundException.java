@@ -1,4 +1,4 @@
-package com.todo.taskservice.domain.exception;
+package com.todo.taskservice.service.exception;
 
 public class TaskNotFoundException extends RuntimeException{
     public TaskNotFoundException(String message){
