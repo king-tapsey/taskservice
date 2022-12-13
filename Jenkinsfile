@@ -13,7 +13,7 @@ node {
     }
     stage ('Code Quality scan')  {
        withSonarQubeEnv('SonarQube') {
-       sh "${mvnHome}/bin/mvn -f -DCONFIG_SERVER_URI=http://192.168.10.45:8081 sonar:sonar"
+       sh "${mvnHome}/bin/mvn -f -DCONFIG_SERVER_URI=http://192.168.10.45:8081 pom.xml sonar:sonar"
         }
    }
 }  
