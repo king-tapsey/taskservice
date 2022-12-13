@@ -14,7 +14,7 @@ node {
     stage ('Code Quality scan')  {
        withSonarQubeEnv('SonarQube') {
         def mvnHome = tool name: 'maven3', type: 'maven'
-        sh "${mvnHome}/bin/mvn -f -DCONFIG_SERVER_URI=http://192.168.10.45:8081 pom.xml sonar:sonar"
+        sh "${mvnHome}/bin/mvn -f ./pom.xml -DCONFIG_SERVER_URI=http://192.168.10.45:8081 sonar:sonar"
        }
    }
 }  
