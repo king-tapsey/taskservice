@@ -2,17 +2,15 @@ package com.todo.taskservice.service;
 
 import com.todo.taskservice.domain.Status;
 import com.todo.taskservice.domain.Task;
-import com.todo.taskservice.domain.exception.TaskNotFoundException;
+import com.todo.taskservice.service.exception.TaskNotFoundException;
 import com.todo.taskservice.persistence.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class TaskServiceImpl implements TaskService {
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
     public TaskServiceImpl(TaskRepository taskRepository){
         this.taskRepository = taskRepository;
@@ -31,6 +29,11 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
+    }
+
+    @Override
+    public Task getTaskById(Long taskId) {
+        return taskRepository.findById(taskId).orElseThrow(() -> new TaskNotFoundException("Task not found"));
     }
 
     @Override
@@ -63,8 +66,9 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void  deleteTask(Long taskId) {
+    public String  deleteTask(Long taskId) {
         taskRepository.findById(taskId).orElseThrow(() -> new TaskNotFoundException("Task not found"));
         taskRepository.deleteById(taskId);
+        return "Task deleted successfully";
     }
 }
