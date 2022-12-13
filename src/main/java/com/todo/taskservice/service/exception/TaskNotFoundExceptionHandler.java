@@ -16,8 +16,7 @@ public class TaskNotFoundExceptionHandler {
         ApiException apiException = new ApiException(
                 e.getMessage(),
                 HttpStatus.NOT_FOUND,
-                ZonedDateTime.now(ZoneId.of("Z")),
-                e
+                ZonedDateTime.now(ZoneId.of("Z"))
         );
         return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
     }

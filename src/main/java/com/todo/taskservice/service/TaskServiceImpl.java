@@ -32,6 +32,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public Task getTaskById(Long taskId) {
+        return taskRepository.findById(taskId).orElseThrow(() -> new TaskNotFoundException("Task not found"));
+    }
+
+    @Override
     public Task createTask(TaskCreateRequest taskCreateRequest) {
         Task task = new Task();
         task.setAssigneeId(taskCreateRequest.getAssigneeId());

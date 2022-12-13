@@ -48,6 +48,12 @@ public class TaskRestController {
         List<Task> tasks = taskService.getTasksByAssigneeId(assigneeId);
         return new PageImpl<>(tasks, pageable, tasks.size());
     }
+
+    @GetMapping("/task/{taskId}")
+    public TaskDto getTaskById(@PathVariable Long taskId){
+        Task task = taskService.getTaskById(taskId);
+        return TaskDto.of(task);
+    }
     @PutMapping("/pin/{taskId}")
     public TaskDto pinTask(@PathVariable Long taskId){
         Task task = taskService.updateTaskPinnedStatus(taskId, true);
