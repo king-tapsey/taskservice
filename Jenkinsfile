@@ -14,7 +14,7 @@ node {
     stage ('Code Quality scan')  {
        withSonarQubeEnv('SonarQube') {
 //        def mvnHome = tool name: 'maven3', type: 'maven'
-        sh "${mvnHome}/bin/mvn -f king-tapsey/taskservice/pom.xml sonar:sonar"
+        sh "${mvnHome}/bin/mvn -f pom.xml sonar:sonar"
        }
    }
 }  
