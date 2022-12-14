@@ -13,9 +13,17 @@ node{
         withSonarQubeEnv('SonarQube') {      
         sh "${mvnHome}/bin/mvn clean verify sonar:sonar"
        }
+         stage('Upload War To Nexus') {
+             steps{
+                 sh "docker build -t devopafrosoft1/taskservice:0.01
+        sh clean install -DCONFIG_SERVER_URI=http://192.168.10.45:8081"
     }
   
    stage ('Code coverage')  {
        jacoco()
    }
+}
+        
+def getVersion(){
+    
 }
