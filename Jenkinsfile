@@ -1,7 +1,7 @@
 Pipline {
     agent any
     tools{
-        maven3, type: 'maven'
+        maven3 'maven'
     }
 
     stage ("checkout")  {
