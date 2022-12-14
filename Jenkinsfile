@@ -1,9 +1,4 @@
 node{
-    agent any
-    tools {
-       maven 'maven3'
-    }
-
     stage ("checkout")  {
         checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-key', url: 'https://github.com/king-tapsey/taskservice/']]])
      }
