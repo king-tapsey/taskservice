@@ -1,7 +1,7 @@
 pipline{
     agent any
-    tools{
-        maven 'maven3'
+    tools {
+       maven 'maven3'
     }
 
     stage ("checkout")  {
