@@ -28,8 +28,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getTasksByStatus(Pageable pageable, Status status) {
-        return taskRepository.getTasksByStatus(pageable, status);
+    public List<Task> getTasksByStatus(Status status) {
+        return taskRepository.getTasksByStatus(status);
     }
 
     @Override

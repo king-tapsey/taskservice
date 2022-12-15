@@ -10,5 +10,5 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> getTasksByPinnedAndAndAssigneeId(Boolean isPinned, Long assigneeId);
     List<Task> getTasksByAssigneeId(Long assigneeId);
-    List<Task> getTasksByStatus(Pageable pageable, Status status);
+    List<Task> getTasksByStatus(Status status);
 }

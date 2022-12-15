@@ -2,7 +2,6 @@ package com.todo.taskservice.api;
 
 import com.todo.taskservice.domain.Status;
 import com.todo.taskservice.domain.Task;
-import com.todo.taskservice.domain.TaskStatus;
 import com.todo.taskservice.service.TaskCreateRequest;
 import com.todo.taskservice.service.TaskRequest;
 import com.todo.taskservice.service.TaskService;
@@ -13,8 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -36,7 +33,7 @@ public class TaskRestController {
     }
 
     @PutMapping("/update/{taskId}")
-    public TaskDto updateTask(@PathVariable Long taskId, TaskRequest taskRequest){
+    public TaskDto updateTask(@PathVariable Long taskId, @RequestBody TaskRequest taskRequest){
         Task task = taskService.updateTask(taskId, taskRequest);
         return TaskDto.of(task);
     }
@@ -52,20 +49,20 @@ public class TaskRestController {
     }
 
     @GetMapping("/todo")
-    public Page<Task> getToDoTasks(@PageableDefault Pageable pageable){
-        List<Task> tasks = taskService.getTasksByStatus(pageable, Status.TO_DO);
+    public Page<Task> getToDoTasks(@PageableDefault  Pageable pageable){
+        List<Task> tasks = taskService.getTasksByStatus(Status.TO_DO);
         return new PageImpl<>(tasks, pageable, tasks.size());
     }
 
     @GetMapping("/inprogress")
     public Page<Task> getInProgressTasks(@PageableDefault Pageable pageable){
-        List<Task> tasks = taskService.getTasksByStatus(pageable, Status.IN_PROGRESS);
+        List<Task> tasks = taskService.getTasksByStatus(Status.IN_PROGRESS);
         return new PageImpl<>(tasks, pageable, tasks.size());
     }
 
     @GetMapping("/done")
     public Page<Task> getDoneTasks(@PageableDefault Pageable pageable){
-        List<Task> tasks = taskService.getTasksByStatus(pageable, Status.DONE);
+        List<Task> tasks = taskService.getTasksByStatus(Status.DONE);
         return new PageImpl<>(tasks, pageable, tasks.size());
     }
 
