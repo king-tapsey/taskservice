@@ -19,3 +19,21 @@ node{
    }
 }
 }
+
+  stage ('Nexus upload')  {
+        nexusArtifactUploader(
+        nexusVersion: 'nexus3',
+        protocol: 'http',
+        nexusUrl: 'http://192.168.10.45:8085',
+        groupId: 'myGroupId',
+        version: '1.0-SNAPSHOT',
+        repository: 'taskservice-official-repository',
+        credentialsId: 'NEXUS_CRED',
+        artifacts: [
+            [artifactId: 'taskservice',
+             classifier: '',
+             file: 'taskservice/target/taskservice-0.0.1-SNAPSHOT.jar',
+             type: 'jar']
+        ]
+     )
+    }
