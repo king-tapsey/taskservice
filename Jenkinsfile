@@ -24,13 +24,13 @@ node{
         protocol: 'http',
         nexusUrl: 'http://192.168.10.45:8085',
         groupId: 'myGroupId',
-        version: '1.0-SNAPSHOT',
+        version: '0.0.1-SNAPSHOT',
         repository: 'taskservice-official-repository',
         credentialsId: 'NEXUS_CRED',
         artifacts: [
             [artifactId: 'taskservice',
              classifier: '',
-             file: '~/workspace/Task-service-official pipline/target/taskservice-0.0.1-SNAPSHOT.jar',
+             file: "~/workspace/Task-service-official\ pipline/target/taskservice-0.0.1-SNAPSHOT.jar",
              type: 'jar']
         ]
      )
