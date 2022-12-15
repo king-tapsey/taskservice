@@ -18,7 +18,3 @@ node{
        jacoco()
    }
 }
-        
-def getVersion(){
-    
-}
