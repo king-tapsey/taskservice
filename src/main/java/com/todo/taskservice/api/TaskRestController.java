@@ -1,24 +1,32 @@
 package com.todo.taskservice.api;
 
+import com.todo.taskservice.domain.Status;
 import com.todo.taskservice.domain.Task;
+import com.todo.taskservice.domain.TaskStatus;
 import com.todo.taskservice.service.TaskCreateRequest;
 import com.todo.taskservice.service.TaskRequest;
 import com.todo.taskservice.service.TaskService;
+import com.todo.taskservice.service.TaskStatusService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
 @RequestMapping("v1/tasks")
 public class TaskRestController {
     private final TaskService taskService;
+    private final TaskStatusService taskStatusService;
 
-    public TaskRestController(TaskService taskService){
+    public TaskRestController(TaskService taskService, TaskStatusService taskStatusService){
         this.taskService = taskService;
+        this.taskStatusService = taskStatusService;
     }
 
     @PostMapping("/create")
@@ -41,6 +49,31 @@ public class TaskRestController {
     public Page<Task> getAllTasks(@PageableDefault Pageable pageable){
         List<Task> tasks = taskService.getAllTasks();
         return new PageImpl<>(tasks, pageable, tasks.size());
+    }
+
+    @GetMapping("/todo")
+    public Page<Task> getToDoTasks(@PageableDefault Pageable pageable){
+        List<Task> tasks = taskService.getTasksByStatus(pageable, Status.TO_DO);
+        return new PageImpl<>(tasks, pageable, tasks.size());
+    }
+
+    @GetMapping("/inprogress")
+    public Page<Task> getInProgressTasks(@PageableDefault Pageable pageable){
+        List<Task> tasks = taskService.getTasksByStatus(pageable, Status.IN_PROGRESS);
+        return new PageImpl<>(tasks, pageable, tasks.size());
+    }
+
+    @GetMapping("/done")
+    public Page<Task> getDoneTasks(@PageableDefault Pageable pageable){
+        List<Task> tasks = taskService.getTasksByStatus(pageable, Status.DONE);
+        return new PageImpl<>(tasks, pageable, tasks.size());
+    }
+
+
+    @GetMapping("/statuses")
+    public Collection<Status> getAllStatuses(){
+        List<Status> statuses =  taskStatusService.getAllStatuses();
+        return statuses;
     }
 
     @GetMapping("/{assigneeId}")

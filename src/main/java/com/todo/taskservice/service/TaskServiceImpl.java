@@ -4,6 +4,7 @@ import com.todo.taskservice.domain.Status;
 import com.todo.taskservice.domain.Task;
 import com.todo.taskservice.service.exception.TaskNotFoundException;
 import com.todo.taskservice.persistence.TaskRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,11 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> getTasksByPinnedAndAssigneeId(Boolean pinned, Long assigneeId) {
         return taskRepository.getTasksByPinnedAndAndAssigneeId(pinned, assigneeId);
+    }
+
+    @Override
+    public List<Task> getTasksByStatus(Pageable pageable, Status status) {
+        return taskRepository.getTasksByStatus(pageable, status);
     }
 
     @Override
