@@ -30,7 +30,7 @@ node{
         artifacts: [
             [artifactId: 'taskservice',
              classifier: '',
-             file: 'taskservice/target/taskservice-0.0.1-SNAPSHOT.jar',
+             file: '/workspace/Task-service-official pipline/target/taskservice-0.0.1-SNAPSHOT.jar',
              type: 'jar']
         ]
      )
