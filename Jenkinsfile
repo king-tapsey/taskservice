@@ -17,8 +17,6 @@ node{
    stage ('Code coverage')  {
        jacoco()
    }
-}
-}
 
   stage ('Nexus upload')  {
         nexusArtifactUploader(
