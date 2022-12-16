@@ -23,7 +23,7 @@ node{
         nexusVersion: 'nexus3',
         protocol: 'http',
         nexusUrl: 'http://192.168.10.45:8085',
-        groupId: 'myGroupId',
+        groupId: 'com.todo',
         version: '0.0.1-SNAPSHOT',
         repository: 'taskservice-official-repository',
         credentialsId: 'NEXUS_CRED',
