@@ -30,7 +30,7 @@ node{
         artifacts: [
             [artifactId: 'taskservice',
              classifier: '',
-             file: "/var/lib/docker/volumes/jenkins_home/_data/workspace/Task-service-official-pipeline/target/taskservice-0.0.1-SNAPSHOT.jar",
+             file: "/var/jenkins_home/workspace/Task-service-official-pipeline/target/taskservice-0.0.1-SNAPSHOT.jar",
              type: 'jar'] 
         ]
      )
