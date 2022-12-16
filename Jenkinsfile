@@ -13,7 +13,8 @@ node{
         withSonarQubeEnv('SonarQube') {      
         sh "${mvnHome}/bin/mvn clean verify sonar:sonar"
        }
-         
+    }
+    
    stage ('Code coverage')  {
        jacoco()
    }
