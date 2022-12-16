@@ -17,23 +17,9 @@ node{
    stage ('Code coverage')  {
        jacoco()
    }
+    
+   stage ("Deploy code"){
+       sh "java -jar -DCONFIG_SERVER_URI=http://192.168.10.45:8081 /var/jenkins_home/workspace/Task-service-official-pipeline/target/taskservice-0.0.1-SNAPSHOT.jar"
+   }         
 
-  stage ('Nexus upload')  {
-        nexusArtifactUploader(
-        nexusVersion: 'nexus3',
-        protocol: 'http',
-        nexusUrl: 'http://192.168.10.45:8085',
-        groupId: 'com.todo',
-        version: '0.0.1-SNAPSHOT',
-        repository: 'Task-service-official-repo',
-        credentialsId: 'NEXUS_CRED',
-        artifacts: [
-            [artifactId: 'taskservice',
-             classifier: '',
-             file: "/var/jenkins_home/workspace/Task-service-official-pipeline/target/taskservice-0.0.1-SNAPSHOT.jar",
-             type: 'jar'] 
-        ]
-     )
-    }
-    }
-}
+  
